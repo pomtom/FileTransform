@@ -29,7 +29,7 @@ steps:
     configuration: '$(buildConfiguration)'
 - task: CopyFiles@2
   inputs:
-    SourceFolder: 'FileTransform/'
+    SourceFolder: '$(Build.SourcesDirectory)'
     Contents: 'Client*.settings'
     TargetFolder: '$(build.artifactStagingDirectory)'
 
