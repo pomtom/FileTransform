@@ -43,7 +43,21 @@ steps:
     enableXmlTransform: true
     fileType: 'xml'
     targetFiles: '**/*.Client.settings'
-
+- task: replacetokens@4
+  inputs:
+    rootDirectory: '$(build.artifactStagingDirectory)'
+    targetFiles: '**/*.settings'
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: true
+    transformPrefix: '#{'
+    transformSuffix: '}#'
+    useLegacyPattern: false
+    enableTelemetry: true
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
