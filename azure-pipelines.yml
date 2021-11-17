@@ -13,6 +13,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  property1: 'pramod1'
+  property2: 'pramod2'
+
 
 steps:
 - task: NuGetToolInstaller@1
@@ -33,17 +36,13 @@ steps:
     Contents: 'Client*.settings'
     TargetFolder: '$(build.artifactStagingDirectory)'
 
-- task: CopyFiles@2
+- task: FileTransform@1
+  displayName: 'File Transformation $(build.artifactStagingDirectory)'
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: 'Client*.settings'
-    TargetFolder: '$(build.StagingDirectory)'
-
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: 'Client*.settings'
-    TargetFolder: '$(Agent.BuildDirectory)'
+    folderPath: '$(build.artifactStagingDirectory)'
+    enableXmlTransform: true
+    fileType: 'xml'
+    targetFiles: '**/*.Client.settings'
 
 - task: PublishBuildArtifacts@1
   inputs:
