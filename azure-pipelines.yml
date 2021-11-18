@@ -50,38 +50,38 @@ steps:
 - task: ExtractFiles@1
   inputs:
     archiveFilePatterns: '**/*.zip'
-    destinationFolder: '$(Build.SourcesDirectory)'
+    destinationFolder: '$(build.artifactStagingDirectory)'
     cleanDestinationFolder: true
     overwriteExistingFiles: false
     
-- task: FileTransform@1
-  displayName: 'File Transformation $(Build.SourcesDirectory)'
-  inputs:
-    folderPath: '$(Build.SourcesDirectory)'
-    enableXmlTransform: true
-    fileType: 'xml'
-    targetFiles: |
-      **/*.Client.settings
-      **/*.config
-
-#- task: replacetokens@4
-#  displayName: 'Replace token variables'
+#- task: FileTransform@1
+#  displayName: 'File Transformation $(build.artifactStagingDirectory)'
 #  inputs:
-#    rootDirectory: '$(build.artifactStagingDirectory)'
+#    folderPath: '$(build.artifactStagingDirectory)'
+#    enableXmlTransform: true
+#    fileType: 'xml'
 #    targetFiles: |
-#      **/*.settings
+#      **/*.Client.settings
 #      **/*.config
-#    encoding: 'auto'
-#    tokenPattern: 'default'
-#    writeBOM: true
-#    actionOnMissing: 'warn'
-#    keepToken: false
-#    actionOnNoFiles: 'fail'
-#    enableTransforms: true
-#    transformPrefix: '#{'
-#    transformSuffix: '}#'
-#    useLegacyPattern: false
-#    enableTelemetry: true
+
+- task: replacetokens@4
+  displayName: 'Replace token variables'
+  inputs:
+    rootDirectory: '$(build.artifactStagingDirectory)'
+    targetFiles: |
+      **/*.settings
+      **/*.config
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'fail'
+    enableTransforms: true
+    transformPrefix: '#{'
+    transformSuffix: '}#'
+    useLegacyPattern: false
+    enableTelemetry: true
 
 
 - task: PublishBuildArtifacts@1
