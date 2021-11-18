@@ -57,24 +57,24 @@ steps:
       **/*.Client.settings
       **/*.config
 
-- task: replacetokens@4
-  displayName: 'Replace token variables'
-  inputs:
-    rootDirectory: '$(build.artifactStagingDirectory)'
-    targetFiles: |
-      **/*.settings
-      **/*.config
-    encoding: 'auto'
-    tokenPattern: 'default'
-    writeBOM: true
-    actionOnMissing: 'warn'
-    keepToken: false
-    actionOnNoFiles: 'fail'
-    enableTransforms: true
-    transformPrefix: '#{'
-    transformSuffix: '}#'
-    useLegacyPattern: false
-    enableTelemetry: true
+#- task: replacetokens@4
+#  displayName: 'Replace token variables'
+#  inputs:
+#    rootDirectory: '$(build.artifactStagingDirectory)'
+#    targetFiles: |
+#      **/*.settings
+#      **/*.config
+#    encoding: 'auto'
+#    tokenPattern: 'default'
+#    writeBOM: true
+#    actionOnMissing: 'warn'
+#    keepToken: false
+#    actionOnNoFiles: 'fail'
+#    enableTransforms: true
+#    transformPrefix: '#{'
+#    transformSuffix: '}#'
+#    useLegacyPattern: false
+#    enableTelemetry: true
 
 
 - task: PublishBuildArtifacts@1
