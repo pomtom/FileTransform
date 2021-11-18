@@ -47,17 +47,18 @@ steps:
     Contents: 'Client*.settings'
     TargetFolder: '$(build.artifactStagingDirectory)'
 
-#- task: ExtractFiles@1
-#  inputs:
-#    archiveFilePatterns: '**/*.zip'
-#    destinationFolder: '$(build.artifactStagingDirectory)'
-#    cleanDestinationFolder: true
-#    overwriteExistingFiles: false
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '**/*.zip'
+    destinationFolder: '$(build.artifactStagingDirectory)/diro'
+    cleanDestinationFolder: true
+    overwriteExistingFiles: true
+
     
 - task: FileTransform@1
   displayName: 'File Transformation $(build.artifactStagingDirectory)'
   inputs:
-    folderPath: '$(build.artifactStagingDirectory)'
+    folderPath: '$(build.artifactStagingDirectory)/diro'
     enableXmlTransform: true
     fileType: 'xml'
     targetFiles: |
@@ -82,6 +83,15 @@ steps:
 #    transformSuffix: '}#'
 #    useLegacyPattern: false
 #    enableTelemetry: true
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+    verbose: true
 
 
 - task: PublishBuildArtifacts@1
