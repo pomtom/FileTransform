@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <settings>
-	<add key="property1" value="from Client.settings" />
-	<add key="property2" value="#{from Client.settings}#" />
+  <add key="property1" value="property1" />
+  <add key="property2" value="#{property2}#" />
 </settings>

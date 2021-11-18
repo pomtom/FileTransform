@@ -15,7 +15,7 @@ variables:
   buildConfiguration: 'Release'
   
   property1: 'variable property1'
-  settings.property2: 'variable property2'
+  property2: 'variable property2'
   Environment: 'variable Environment'
   Environment1: 'variable Environment1'
   con: 'variable con'
