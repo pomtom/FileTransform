@@ -47,6 +47,13 @@ steps:
     Contents: 'Client*.settings'
     TargetFolder: '$(build.artifactStagingDirectory)'
 
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: '**/*.zip'
+    destinationFolder: '$(build.artifactStagingDirectory)'
+    cleanDestinationFolder: true
+    overwriteExistingFiles: false
+    
 - task: FileTransform@1
   displayName: 'File Transformation $(build.artifactStagingDirectory)'
   inputs:
