@@ -50,14 +50,14 @@ steps:
 - task: ExtractFiles@1
   inputs:
     archiveFilePatterns: '**/*.zip'
-    destinationFolder: '$(build.artifactStagingDirectory)'
+    destinationFolder: '$(Build.SourcesDirectory)'
     cleanDestinationFolder: true
     overwriteExistingFiles: false
     
 - task: FileTransform@1
-  displayName: 'File Transformation $(build.artifactStagingDirectory)'
+  displayName: 'File Transformation $(Build.SourcesDirectory)'
   inputs:
-    folderPath: '$(build.artifactStagingDirectory)'
+    folderPath: '$(Build.SourcesDirectory)'
     enableXmlTransform: true
     fileType: 'xml'
     targetFiles: |
